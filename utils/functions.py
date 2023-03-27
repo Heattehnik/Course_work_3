@@ -23,6 +23,12 @@ def sort_list(operations: list) -> list:
 
 
 def get_executed(operations: list) -> list:
+    """
+    Функция принимсает в качестве аргумента список словарей
+    фильтрует по состоянию EXECUTED и возвращает отфильтрованный список
+    :param operations:
+    :return:
+    """
     result_list = []
     for item in operations:
         if item.get('state') == 'EXECUTED':
