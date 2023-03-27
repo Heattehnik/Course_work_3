@@ -27,7 +27,6 @@ def get_executed(operations: list) -> list:
     for item in operations:
         if item.get('state') == 'EXECUTED':
             result_list.append(item)
-    print(result_list)
     return result_list
 
 
@@ -42,3 +41,19 @@ def date_format(date: str) -> str:
     formated_date = input_date.strftime('%d.%m.%Y')
 
     return formated_date
+
+
+def mask_card(card: str) -> str:
+    """
+    Функция принимает строку и скрывает элементы по маске
+    :param card:
+    :return: скрытая строка
+    """
+    if not card:
+        return ''
+    card_data = card.split(' ')
+    if card_data[0] == 'Счет':
+        return card_data[0] + ' **' + card_data[1][-4:]
+    card_number = card_data[-1][:4] + ' ' + card_data[-1][4:6] + '** **** ' + card_data[-1][-4:]
+    return ' '.join(card_data[:-1]) + ' ' + card_number
+
