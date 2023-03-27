@@ -1,10 +1,25 @@
 import json
+import datetime
 
 
 def load_operations(path: str) -> list:
+    """Функция принимает в качестве аргумента строку с путем файла json
+    и возвращает список словарей
+    """
     with open(path, "r", encoding="UTF-8") as file:
         list_ = json.load(file)
     return list_
+
+
+def sort_list(operations: list) -> list:
+    """
+    Функция принимает список словарей и сортирует его по дате.
+    И возвращает отсортированный список.
+    :param operations:
+    :return:
+    """
+    operations.sort(key=lambda x: x.get('date'), reverse=True)
+    return operations
 
 
 def get_executed(operations: list) -> list:
@@ -15,3 +30,15 @@ def get_executed(operations: list) -> list:
     print(result_list)
     return result_list
 
+
+def date_format(date: str) -> str:
+    """
+    Функция принимает строку с датой в формате 2019-08-26T10:50:58.294041
+    и возвращет в формате 26.08.2019
+    :param date:
+    :return:
+    """
+    input_date = datetime.datetime.strptime(date, '%Y-%m-%dT%H:%M:%S.%f')
+    formated_date = input_date.strftime('%d.%m.%Y')
+
+    return formated_date
