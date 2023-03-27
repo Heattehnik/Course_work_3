@@ -10,9 +10,8 @@ def load_operations(path: str) -> list:
 def get_executed(operations: list) -> list:
     result_list = []
     for item in operations:
-        if not len(item):
-            continue
-        if item['state'] == 'EXECUTED':
+        if item.get('state') == 'EXECUTED':
             result_list.append(item)
+    print(result_list)
     return result_list
 
